@@ -46,3 +46,8 @@ script:
 # After a build, send email notification with the build results
 notifications:
   email: james.labroy@gmail.com
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: DEQ8lr9eOcoXSDoxrk0vxYIPBIFe5spjrSYZqgbTn8AeEMkEWsFQrTxmq+Fi+/U2iTokvpqWZa5J8zJXyH2au0ojcFB4ch+GhlPd1jJTgSl6aWHK4jXasMRT2POFYozGXLxXv/RF206OftXB4AHDWgcsqlFzy+qRKxguGoZkwR5pZb47PaA/bFaZQwI9OfIwh36T5tqiuM7ny/gmja4Apd+9NpJlu+jxuOOfAJXasl71n1WbmzUoTU9glSaQNNc9cJq8RluFEBnwMVR02ugXkUXHZuUZHsG4v5YNlDTSSGSLew+oSSyYQIJA+7eSct2wl7nkecZ+s9rTU/t3/WL3BQD+p1OTxDqWwhDOuEo5o9Mg2+CsUURtYQhZPrgNG7qS2Iq5QnnuN8/o6yivvA4mnbdVzaV3q1X9O8yw2NxRg3dsw4eKowQo1H5kBecRz5RpSyUR75M2mahDNwZTWq9MzACZgLbAbqMMi6R1GYssG959yzcSb97EsxKsMIVEdIGp/vGqhNopInVxtjZx+yNqutPe+1yqgktuo6PNbj53FEG+xCIk2cmkfhJREej3y6nFg+td4OSm7wpvz4SsK2rPEY/Oj/ryjllQ7mLzNwhFqzhSh6YY7/JPIdUuVbBlLB6q2T2ALEWz+M72g42l3Gvs9cUXkOVWYLaAk8fps/bd5Vc=
