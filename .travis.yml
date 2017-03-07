@@ -41,7 +41,7 @@ install:
 
 # Run script
 script:
-  - phpunit
+  - ./vendor/bin/simple-phpunit
 
 # After a build, send email notification with the build results
 notifications:

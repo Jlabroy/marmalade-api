@@ -11,6 +11,14 @@ use AppBundle\Entity\User;
 class DefaultController extends Controller
 {
     /**
+     * @Route("/version", name="version")
+     */
+    public function versionAction()
+    {
+        return new JsonResponse('1.0');
+    }
+
+    /**
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
