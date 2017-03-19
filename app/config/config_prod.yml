@@ -14,7 +14,7 @@ doctrine:
         port:     "%database_port%"
         dbname:   "%env(DATABASE_NAME)%"
         user:     "%env(DATABASE_USER)%"
-        password: "%env(DATABASE_password)%"
+        password: "%env(DATABASE_PASSWORD)%"
 
 monolog:
     handlers:
