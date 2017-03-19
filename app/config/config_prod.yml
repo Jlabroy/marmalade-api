@@ -7,6 +7,15 @@ imports:
 #        result_cache_driver: apc
 #        query_cache_driver: apc
 
+doctrine:
+    dbal:
+        driver:   pdo_pgsql
+        host:     "%env(DATABASE_HOST)%"
+        port:     "%database_port%"
+        dbname:   "%env(DATABASE_NAME)%"
+        user:     "%env(DATABASE_USER)%"
+        password: "%env(DATABASE_password)%"
+
 monolog:
     handlers:
         main:
