@@ -15,7 +15,7 @@ class DefaultController extends Controller
      */
     public function versionAction()
     {
-        return new JsonResponse('1.0');
+        return new JsonResponse('1.01');
     }
 
     /**

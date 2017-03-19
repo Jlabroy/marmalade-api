@@ -17,7 +17,24 @@ CREATE TABLE pages (
   title text,
   meta_description text,
   content text,
-  FULLTEXT(url, title, meta_description, content),
   PRIMARY KEY (id),
   FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+DROP TABLE users;
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  first_name text,
+  email varchar(255),
+  password text
+);
+
+DROP TABLE pages;
+CREATE TABLE pages (
+  id serial,
+  user_id int NOT NULL REFERENCES users(id),
+  url text,
+  title text,
+  meta_description text,
+  content text
 );

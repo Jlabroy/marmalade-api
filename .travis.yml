@@ -4,9 +4,12 @@ language: php
 # Allows use container-based infrastructure
 sudo: false
 
-# Start mysql service
+# Start postgresql service
 services:
-  - mysql
+  - postgresql
+
+before_script:
+  - psql -c 'create database api_test;' -U postgres
 
 # Cache composer packages so "composer install" is faster
 cache:
@@ -24,7 +27,7 @@ matrix:
 
 # Define an environment variable
 env:
-  - SYMFONY_VERSION="3.0.*" DB=mysql
+  - SYMFONY_VERSION="3.0.*"
 
 # Update composer
 before-install:
@@ -46,6 +49,8 @@ script:
 # After a build, send email notification with the build results
 notifications:
   email: james.labroy@gmail.com
+
+
 
 deploy:
   provider: heroku
