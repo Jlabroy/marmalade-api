@@ -48,16 +48,25 @@ class DefaultController extends Controller
             return new JsonResponse([]);
         }
 
-        $sql = sprintf("select 
-            url, 
-            title,
-            meta_description,
-            content,
-            match(url, title, meta_description, content) against ('%s' in natural language mode) as score 
-          from pages 
-          order by score desc
-          LIMIT 10;",
-            $request->get('query')
+        $query = explode(' ', $request->get('query'));
+
+        $sql = sprintf("
+              SELECT 
+                * 
+              FROM (
+                SELECT 
+                  url,
+                  title,
+                  meta_description,
+                  content,
+                  to_tsvector(url) || 
+                  to_tsvector(title) || 
+                  to_tsvector(meta_description) || 
+                  to_tsvector(content) as document 
+                FROM pages
+              ) p_search 
+              WHERE p_search.document @@ to_tsquery('%s:*');",
+            implode('&', $query) . ':*'
         );
 
         $em = $this->getDoctrine()->getManager();
@@ -65,21 +74,6 @@ class DefaultController extends Controller
         $stmt->execute();
 
         $results = $stmt->fetchAll();
-
-        foreach ($results as $k => $result) {
-            if ($result['score'] == 0) {
-                unset($results[$k]);
-                continue;
-            }
-
-            $results[$k]['title'] = substr($result['title'], 1, strlen($result['title']) - 2);
-            $results[$k]['url'] = substr($result['url'], 1, strlen($result['url']) - 2);
-            $results[$k]['meta_description'] = substr($result['meta_description'], 1, strlen($result['meta_description']) - 2);
-            $results[$k]['content'] = substr($result['content'], 1, strlen($result['content']) - 2);
-            $results[$k]['score'] = $result['score'];
-
-        }
-
 
         return new JsonResponse($results);
     }
