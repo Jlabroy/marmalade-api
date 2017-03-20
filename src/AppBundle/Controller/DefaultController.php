@@ -66,7 +66,7 @@ class DefaultController extends Controller
                 FROM pages
               ) p_search 
               WHERE p_search.document @@ to_tsquery('%s:*');",
-            implode('&', $query) . ':*'
+            implode('&', $query)
         );
 
         $em = $this->getDoctrine()->getManager();
